@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>	
+
+	<style>
+	
+	* {
+		box-sizing: border-box;
+	}
+	
+	body {
+		background-color: white;
+		color: black;
+		padding: 1%;
+		font-family: Times, Verdana, sans-serif;
+		font-size: 16px;
+		margin: auto;
+	}
+	
+	h1 {
+		background-color: hsla(0,100%,100%,0.5);
+		color: #64645A;
+		padding: inherit;
+	}
+		
+	p {
+		padding: 5px;
+		margin: 0px;}
+
+	.row {
+	  display: flex; /* equal height of the children */
+	  width: 80%;
+	  margin: auto;
+	  position: relative;
+	}
+
+	.col {
+	  flex: 1; /* additionally, equal width */
+	  padding: 1em;
+	  border: solid;
+	  position: relative;
+	}
+
+	.boxNum {
+		display: inline;
+		font-size: 20pt;
+		padding: .25em .5em;
+		font-weight: bold;
+		height: 1em;
+		width: 1em;
+		border-radius: 50%;
+		border-style: solid;
+		border-color: DimGrey;
+	}
+	
+	.boxHeader{
+		font-size: 16pt;
+		font-weight: bold;
+		padding-left: 5em;
+	}
+	
+	#Factor2 {
+		padding-left: 14.5em;
+	}
+	
+	#flip_column{
+		//width: 8em;
+		padding: 0em 0em 0em 1em;
+	}
+	
+	
+	#Step3Fraction{
+		width: 30em;	
+	}
+	#div1 {
+		background-color: AliceBlue;
+	}
+
+	#div2 {
+		background-color: Cornsilk;
+	}
+
+	#div3 {
+		background-color: LavenderBlush;
+	}
+
+	#div4 {
+		background-color: HoneyDew;
+	}
+	
+	</style>
+   <head>
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="-1" />
+		<meta name = "description" content = "Single Step unit conversion problems">
+		<script src = "ConversionJava.js"></script>
+   </head>
+   
+   <body onload = "myReset()">
+	
+		<center><h1>CONVERSION HELPER</h1></center>
+
+		<form action = "/cgi-bin/html5.cgi" method = "get" name = "myform" >		
+		<div class = "row">
+			<div class = "col" id = "div1">
+			<span class = "boxNum">1</span>
+			<span class = "boxHeader">Find Units</span><br><br>
+			<p>Read the problem and find the units you are working with.</p><br>
+				Starting Units: <input type = "text" name = "Step1StartUnit" onblur = "labelUpdate()" required /><br><br>
+				 Ending Units : <input type = "text" name = "Step1EndUnit" onblur = "labelUpdate()" required /><br><br>
+			<center><input type = "button" value = "Example" onclick = "Ex1();" /> </center>
+				
+		</div><div class = "col" id = "div2">
+			<span class = "boxNum">2</span>
+			<span class = "boxHeader">Get Conversion Factor</span><br><br>
+				<p>This information is usually in the back of your physics or chemistry book.</p><br>
+				<input type = "text" name = "Step2StartNum" onblur = labelUpdate() required />
+				<span id="Step2StartUnit"></span>
+				<big> &nbsp = &nbsp </big>
+				<input type = "text" name = "Step2EndNum" onblur = labelUpdate() required />
+				<span id="Step2EndUnit"></span><br><br><br><br>
+				<center><input type = "button" value = "Example" onclick = "Ex2();" /></center>
+		</div></div>	
+		<div class = "row">
+		<div class = "col" id = "div3">
+
+			<span class = "boxNum">3</span>
+			<span class = "boxHeader">Set Up Problem</span><br><br>
+				<p>Enter the starting number in the first box and then flip the conversion factor so your units cancel.</p><br>
+				<table><tr>	
+					<td id = "Step3Fraction">
+						<input type = "text" name = "Step3UserNum" required />
+						<big><span id = 'Step3UserUnit'></span>
+						<big> * </big>		
+						<span id='Step3TopUnit' style="border-bottom: solid 2px #000000; padding-bottom: 3px;"></span>
+					</td>
+					<td rowspan = "2" id = "flip_column">	
+						<input type = "button" value = "Flip" onclick = "Flip();" style = "padding: 1em 2em 1em 2em"/>
+					</td>
+				</tr><tr>
+					<td><big><span id='Step3BottomUnit'></span></big></td>
+				</tr></table>
+				
+			<br>
+		</div>
+		<div class = "col" id = "div4">
+			<span class = "boxNum">4</span>
+			<span class = "boxHeader">Solve</span><br><br>
+			<p>Multiply the numbers on top and divide by the number on the bottom.</p><br><br><br>
+			<center>
+				<input type = "button" value = "Calculator Help" onclick = "Ex3();" />
+				<input type = "button" value = "Check Work"  onclick = "Check();" />
+				<input type = "reset" onclick = "myReset();"/></td></big></big></center>
+			</center>
+
+
+		</div></div>
+		</form>
+
+   </body>
+</html>
